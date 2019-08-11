@@ -1,0 +1,46 @@
+
+  
+<div class="col-md-12 col-xs-12 side-bar">
+
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <div class="container mob">
+          <img src="..\assets\img\originial-namemob.png" class="visible-xs pull-left">
+            <a class="main-navbar-header burger-icon" href="#">
+            <button type="button" class="navbar-toggle x collapsed" data-toggle="collapse"  (click)="toggleNavbar()">
+              <span class="icon-bar top-bar"></span>
+              <span class="icon-bar middle-bar"></span>
+              <span class="icon-bar bottom-bar"></span> 
+            </button>
+            <img src="..\assets\img\originial-name - Copy.png" class="padding-all padding-bottom-zero hidden-xs pull-left">
+  
+          </a>
+        </div>
+          <div class="collapse navbar-collapse" [ngClass]="{ 'show': navbarOpen }">
+            <ul class="nav navbar-nav">
+              <li><a class="nav-item nav-link active" routerLink="/csList">Home</a></li>
+
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" title="Operations" href="#">Operations
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  
+              <li> <a class="dropdown-item"  routerLink="/recentList">RecentList</a></li>
+                  <li><a class="dropdown-item" routerLink="/create">Create</a></li>
+                  <li><a class="dropdown-item" routerLink="/customerList">List</a></li>
+                  <li><a class="dropdown-item" routerLink="/agent">Add Agent</a></li>
+                  <li><a class="dropdown-item" routerLink="/agentList">Agents</a></li>
+                  <li><a class="dropdown-item" routerLink="/userList">Users</a></li>
+                                      
+                </ul>
+              </li>
+                
+              <li><a class="nav-item nav-link" routerLink="/logout">LogOut</a></li>
+
+            </ul>				      
+          </div>
+       
+  
+  </nav>
+  </div>
+  
+  <div class="container-fluid"></div>

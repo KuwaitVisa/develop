@@ -1,0 +1,28 @@
+<app-layout>
+    <div class="table-responsive-md">
+        <table class="table table-sm" *ngIf="userDetails && userDetails.length">
+          <thead>
+            <tr class="bg-success">
+            
+              <th class="table-primary">User Name</th>
+              <th>Email</th>
+              
+              
+              <th class="table-primary">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of userDetails | paginate: { itemsPerPage: 5, currentPage: p }; let i = index" >
+             
+              <td class="table-primary">{{ user.fullName }}</td>
+              <td>{{ user.email }}</td>
+             
+             
+              <td><button (click)="delete(user._id)"  class="btn btn-danger">Delete</button></td>
+            </tr>
+          </tbody>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </table>
+      </div>
+
+</app-layout>

@@ -1,0 +1,106 @@
+
+<app-layout>
+
+
+<form #customerForm="ngForm" (ngSubmit)="customerForm.valid && onSubmit(customerForm)">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h3 class="panel-title">Create Customer</h3>
+        </div>
+    <div class="panel-body">
+    <div class="form-row">
+    <div class="form-group col-md-6">
+    <input type="text"  #fullName="ngModel" [(ngModel)]="customerService.selectedCustomer.fullName" name="fullName" placeholder="Full Name" class="form-control"
+    required  [ngClass]="{'invalid-textbox' :customerForm.submitted && !fullName.valid }">
+    <div *ngIf="customerForm.submitted && !fullName.valid">
+      <label class="validation-message">This field is required.</label>
+    </div>
+  </div>
+
+ <div class="form-group col-md-6">
+    <input type="text"  #passportnumber="ngModel" [(ngModel)]="customerService.selectedCustomer.passportnumber" name="passportnumber" placeholder="passportnumber" class="form-control"
+    required [ngClass]="{'invalid-textbox' :customerForm.submitted && !passportnumber.valid }">
+    <div *ngIf="customerForm.submitted && passportnumber.errors">
+      <label *ngIf="passportnumber.errors.required" class="validation-message">This field is required.</label>
+     
+    </div>
+ </div>
+ </div>
+  <div class="form-group">
+      <input type="text" #visaexpdate="ngModel" [(ngModel)]="customerService.selectedCustomer.visaexpdate" name="visaexpdate" placeholder="Choose a visaexpdate"  class="form-control" bsDatepicker [bsConfig]="datePickerConfig"/>
+     
+    <div *ngIf="customerForm.submitted && visaexpdate.errors">
+      <label *ngIf="visaexpdate.errors.required" class="validation-message">This field is required.</label>
+     
+    </div>
+ </div>
+  
+  <div class="form-group">
+      <input type="text" #medicalexpdate="ngModel" [(ngModel)]="customerService.selectedCustomer.medicalexpdate" name="medicalexpdate" placeholder="Choose a medicalexpdate"  class="form-control" bsDatepicker [bsConfig]="datePickerConfig"/>
+     
+    <div *ngIf="customerForm.submitted && medicalexpdate.errors">
+      <label *ngIf="medicalexpdate.errors.required" class="validation-message">This field is required.</label>
+     
+    </div>
+ </div>
+ 
+<div class="form-row">
+ <div class="form-group col-md-6">
+  <label for="priority">priority</label>
+  <select class="form-control" id="priority"  #priority="ngModel" [(ngModel)]="customerService.selectedCustomer.priority" placeholder="Choose a priority" name="priority">
+    <option selected>Choose...</option>
+    <option>normal</option>
+    <option>sameday</option>
+   
+  </select>
+  <div *ngIf="customerForm.submitted && priority.errors">
+    <label *ngIf="priority.errors.required" class="validation-message">This field is required.</label>
+   
+  </div>
+</div>
+
+
+
+  
+<div class="form-group col-md-6">
+    <label for="agentname">agentname</label>
+    <select class="form-control" id="agentname"  #agentname="ngModel" [(ngModel)]="customerService.selectedCustomer.agentname" placeholder="Choose a agentname" name="agentname">
+      <option *ngFor="let agent of agentDetails" [value]="agent.agentName">
+        {{agent.agentName}}
+      </option>
+    </select>
+    <div *ngIf="customerForm.submitted && priority.errors">
+      <label *ngIf="priority.errors.required" class="validation-message">This field is required.</label>
+     
+    </div>
+  </div>
+      </div>
+      <div class="form-group">
+          <input type="text"   #comments="ngModel" [(ngModel)]="customerService.selectedCustomer.comments" name="comments" placeholder="comments" class="form-control"
+          required [ngClass]="{'invalid-textbox' :customerForm.submitted && !comments.valid }">
+          <div *ngIf="customerForm.submitted && comments.errors">
+            <label *ngIf="comments.errors.required" class="validation-message">This field is required.</label>
+           
+          </div>
+      </div>
+        </div>
+     
+  <div class="panel-footer">
+    <button class="btn btn-primary" type="submit">Save</button>
+   
+  </div>
+
+</div>
+
+  </form>
+
+  <!-- Success message -->
+  <div class="success" *ngIf="showSucessMessage">
+    Saved successfully
+  </div>
+  
+  <!-- Error message -->
+  <div class="alert" *ngIf="serverErrorMessages">
+    {{serverErrorMessages}}
+  </div>
+</app-layout>

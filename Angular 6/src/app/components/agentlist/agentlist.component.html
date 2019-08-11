@@ -1,0 +1,28 @@
+<app-layout>
+    <div class="table-responsive-md">
+        <table class="table table-sm" *ngIf="agentDetails && agentDetails.length">
+          <thead>
+            <tr class="bg-success">
+            
+              <th class="table-primary">Agent Name</th>
+              <th>Mobile Number</th>
+              
+              
+              <th class="table-primary">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let agent of agentDetails | paginate: { itemsPerPage: 5, currentPage: p }; let i = index" >
+             
+              <td class="table-primary">{{ agent.agentName }}</td>
+              <td>{{ agent.MobileNumber }}</td>
+             
+             
+              <td><button (click)="delete(agent._id)"  class="btn btn-danger">Delete</button></td>
+            </tr>
+          </tbody>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </table>
+      </div>
+
+</app-layout>

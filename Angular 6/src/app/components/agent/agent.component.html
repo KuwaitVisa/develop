@@ -1,0 +1,75 @@
+
+<app-layout>
+
+
+  <form #agentForm="ngForm" (ngSubmit)="agentForm.valid && onSubmit(agentForm)">
+      <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Create Agent</h3>
+          </div>
+      <div class="panel-body">
+      <div class="form-row">
+      <div class="form-group col-md-6">
+      <input type="text"  #agentName="ngModel" [(ngModel)]="customerService.selectedAgent.agentName" name="agentName" placeholder="agentName" class="form-control"
+      required  [ngClass]="{'invalid-textbox' :agentForm.submitted && !agentName.valid }">
+      <div *ngIf="agentForm.submitted && !agentName.valid">
+        <label class="validation-message">This field is required.</label>
+      </div>
+    </div>
+  
+   <div class="form-group col-md-6">
+      <input type="text"  #MobileNumber="ngModel" [(ngModel)]="customerService.selectedAgent.MobileNumber" name="MobileNumber" placeholder="MobileNumber" class="form-control"
+      required [ngClass]="{'invalid-textbox' :agentForm.submitted && !MobileNumber.valid }">
+      <div *ngIf="agentForm.submitted && MobileNumber.errors">
+        <label *ngIf="MobileNumber.errors.required" class="validation-message">This field is required.</label>
+       
+      </div>
+   </div>
+   
+    
+      <div class="form-group">
+          <input type="text"  #Address="ngModel" [(ngModel)]="customerService.selectedAgent.Address" name="Address" placeholder="Address" class="form-control"
+          required [ngClass]="{'invalid-textbox' :agentForm.submitted && !Address.valid }">
+          <div *ngIf="agentForm.submitted && Address.errors">
+            <label *ngIf="Address.errors.required" class="validation-message">This field is required.</label>
+           
+          </div>
+        </div>
+        
+        <div class="form-group col-md-6">
+            <input type="text"   #normalRate="ngModel" [(ngModel)]="customerService.selectedAgent.normalRate" name="normalRate" placeholder="normalRate" class="form-control"
+            required [ngClass]="{'invalid-textbox' :agentForm.submitted && !normalRate.valid }">
+            <div *ngIf="agentForm.submitted && normalRate.errors">
+              <label *ngIf="normalRate.errors.required" class="validation-message">This field is required.</label>
+             
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+          <input type="text"   #TatkalRate="ngModel" [(ngModel)]="customerService.selectedAgent.TatkalRate" name="TatkalRate" placeholder="TatkalRate" class="form-control"
+          required [ngClass]="{'invalid-textbox' :agentForm.submitted && !TatkalRate.valid }">
+          <div *ngIf="agentForm.submitted && TatkalRate.errors">
+            <label *ngIf="TatkalRate.errors.required" class="validation-message">This field is required.</label>
+           
+          </div>
+      </div>
+         </div> 
+        </div>
+    <div class="panel-footer">
+      <button class="btn btn-primary" type="submit">Save</button>
+     
+    </div>
+  
+  </div>
+ 
+    </form>
+  
+    <!-- Success message -->
+    <div class="success" *ngIf="showSucessMessage">
+      Saved successfully
+    </div>
+    
+    <!-- Error message -->
+    <div class="alert" *ngIf="serverErrorMessages">
+      {{serverErrorMessages}}
+    </div>
+  </app-layout>

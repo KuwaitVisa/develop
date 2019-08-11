@@ -1,0 +1,32 @@
+
+<app-layout>
+    <div class="table-responsive-md">
+        <table class="table table-sm" *ngIf="customerDetails && customerDetails.length">
+          <thead>
+            <tr class="bg-success">
+            
+              <th class="table-primary">Name</th>
+              <th class="table-primary">agentname</th>
+              
+              <th class="table-primary">received</th>
+              <th>submission</th>
+              <th>Action</th>
+              <th class="table-primary">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let customer of customerDetails | paginate: { itemsPerPage: 5, currentPage: p }; let i = index" >
+             
+              <td class="table-primary">{{ customer.fullName }}</td>
+              <td class="table-primary">{{ customer.agentname }}</td>
+              <td class="table-primary">{{ customer.receiveddate| date }}</td>
+              <td>{{ customer.submissiondate| date  }}</td>
+              <td> <button class="btn btn-primary" (click)="editButtonClick(customer._id)">Edit</button> </td>
+              <td><button (click)="delete(customer._id)"  class="btn btn-danger">Delete</button></td>
+            </tr>
+          </tbody>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+        </table>
+      </div>
+
+</app-layout>
